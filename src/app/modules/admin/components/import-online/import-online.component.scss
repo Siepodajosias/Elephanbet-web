@@ -1,0 +1,30 @@
+::ng-deep {
+	.import-file {
+		.p-fileupload .p-fileupload-buttonbar {
+			background: #2e86df1f;
+			padding: 1rem;
+			border: 1px solid #dee2e6;
+			color: #495057;
+			border-bottom: 0 none;
+			border-top-right-radius: 3px;
+			border-top-left-radius: 3px;
+
+			.boutonEnregistrer {
+				margin-left: 860px !important;
+			}
+		}
+	}
+
+	.myClass {
+		margin-left: 880px;
+	}
+
+	.p-fileupload .p-fileupload-content {
+		background: #90b3a614;
+		padding: 2rem 1rem;
+		border: 1px solid #dee2e6;
+		color: #495057;
+		border-bottom-right-radius: 3px;
+		border-bottom-left-radius: 3px;
+	}
+}

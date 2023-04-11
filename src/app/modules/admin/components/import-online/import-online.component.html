@@ -1,0 +1,31 @@
+<div class=" px-3 py-4 md:px-5 lg:px-7">
+	<p-tag [style]="{'fontSize':'20px','padding':'10px'}"
+		   severity="info"
+		   value="Importation des fichiers online">
+	</p-tag>
+	<div class="grid mt-2">
+		<div class="col-12 md:col-12 lg:col-12">
+			<div class="surface-card shadow-1 p-3 import-file">
+				<h2 class="font-bold">Importation de fichier Excel</h2>
+				<p-fileUpload name="file" url="/api/bilan-jeu/importer"
+							  invalidFileTypeMessageSummary="Format de fichier non valide,"
+							  invalidFileTypeMessageDetail=" types de fichiers autorisés : .xlsx"
+							  invalidFileSizeMessageSummary="Taille de fichier invalide,"
+							  invalidFileSizeMessageDetail="la taille de téléchargement maximale est de {0}"
+							  chooseStyleClass="bg-pink-300"
+							  uploadStyleClass="boutonEnregistrer"
+							  cancelStyleClass="bg-red-700 boutonSupprimer"
+							  accept=".xlsx"
+							  [maxFileSize]="100000"
+							  (onUpload)="onUpload()"
+							  (onError)="onError()"
+							  [chooseLabel]="'Sélectionnez un fichier'"
+							  [uploadLabel]="'Enregistrer'"
+							  [cancelLabel]="'Annuler'">
+				</p-fileUpload>
+			</div>
+		</div>
+	</div>
+</div>
+<p-toast key="notification" [style]="{top:'10%',right:0}"></p-toast>
+

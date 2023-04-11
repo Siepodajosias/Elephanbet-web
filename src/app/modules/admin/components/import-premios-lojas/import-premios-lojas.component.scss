@@ -1,0 +1,25 @@
+::ng-deep {
+	.import-file {
+		.p-fileupload .p-fileupload-buttonbar {
+			background: rgba(13, 111, 34, 0.11);
+			padding: 1rem;
+			border: 1px solid #dee2e6;
+			color: #495057;
+			border-bottom: 0 none;
+			border-top-right-radius: 3px;
+			border-top-left-radius: 3px;
+
+			.boutonEnregistrer {
+				margin-left: 860px !important;
+			}
+
+			.boutonSupprimer {
+				//margin-left: 850px !important;
+			}
+		}
+	}
+
+	.myClass {
+		margin-left: 880px;
+	}
+}

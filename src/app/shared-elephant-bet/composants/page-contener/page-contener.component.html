@@ -1,0 +1,62 @@
+<div class="body" [ngClass]="recupererClassBody()">
+	<div class="grid">
+		<div class="col-12" *ngIf="isFiltreActif()">
+			<div class="px-4 py-80 md:px-6 lg:px-5">
+				<div class="surface-card shadow-1 p-3 border-round">
+					<div class="flex justify-content-between">
+				    <span>
+					   <h4 style="margin: auto;">Période</h4>
+					   <p-calendar [maxDate]="dateFuture"
+								   dateFormat="dd/mm/yy"
+								   view="date"
+								   [(ngModel)]="periodes"
+								   [showIcon]="true"
+								   selectionMode="range"
+								   (onSelect)="onSelectionPeriode()"
+								   [style]="{background: '#F1749E'}"
+								   placeholder="Sélectionnez une période">
+					   </p-calendar>
+				    </span>
+					<span>
+						<h4 style="margin: auto;">Mois</h4>
+						<p-calendar [maxDate]="dateFuture"
+									view="month" dateFormat="mm-yy"
+									[(ngModel)]="mois"
+									[readonlyInput]="true"
+									inputId="monthpicker"
+									(onSelect)="onSelectionMois()"
+									placeholder="Sélectionnez un mois">
+						</p-calendar>
+				    </span>
+					<span>
+						<h4 style="margin: auto;">Année</h4>
+						<p-calendar [maxDate]="dateFuture" view="year"
+									dateFormat="yy" inputId="yearpicker"
+									(onSelect)="onSelectionMAnnee()"
+									[(ngModel)]="annees"
+									placeholder="Sélectionnez une année">
+						</p-calendar>
+					</span>
+					<span>
+						<p-button label="Process"
+								  [style]="{marginTop:'20px'}"
+								  (onClick)="validerfiltre()"
+								  iconPos="right">
+							<i *ngIf="!loading" style="margin-right:5px;"
+							   class="pi pi-cog"></i>
+							<p-progressSpinner [style]="{width: '20px', height: '20px',marginRight:'5px'}"
+											   styleClass="custom-spinner"
+											   strokeWidth="7"
+											   *ngIf="loading">
+							</p-progressSpinner>
+						</p-button>
+					</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div>

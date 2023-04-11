@@ -1,0 +1,116 @@
+{
+	"GLOBAL": {
+	},
+	"LOGIN": {
+		"LABEL_BIENVENUE": "PT:Bienvenue",
+		"LOGIN_UTILISATEUR": "PT:Login",
+		"PLACEHOLDER_LOGIN_UTILISATEUR": "PT:Entrez votre login utilisateur",
+		"MOT_DE_PASSE": "PT:Mot de passe",
+		"PLACEHOLDER_MOT_DE_PASSE": "PT:Entrez votre mot de passe",
+		"BTN_CONNECTER": "PT:Se connecter"
+	},
+	"COMPONENTS": {
+		"POPOVER": {
+			"FILTRE_LABEL": "Ricercare",
+			"BOUTON_VALIDATION": "OK",
+			"BOUTON_ANNULATION": "Annullare",
+			"CHECKBOX_SELECTIONNER_TOUT": "Selezionare tutto"
+		},
+		"PRIMENG": {
+			"clear": "Cancellare",
+			"prevText": "Precedente",
+			"nextText": "Seguente",
+			"today": "Oggi",
+			"monthNames": [
+				"Gennaio",
+				"Febbraio",
+				"Marzo",
+				"Aprile",
+				"Maggio",
+				"Giugno",
+				"Luglio",
+				"Agosto",
+				"Settembre",
+				"Ottobre",
+				"Novembre",
+				"Dicembre"
+			],
+			"monthNamesShort": [
+				"Gen.",
+				"Feb.",
+				"Mar.",
+				"Apr.",
+				"Mag.",
+				"Giu.",
+				"Lug.",
+				"Ago.",
+				"Set.",
+				"Ott.",
+				"Nov.",
+				"Dic."
+			],
+			"dayNames": [
+				"Domenica",
+				"Lunedì",
+				"Martedì",
+				"Mercoledì",
+				"Giovedì",
+				"Venerdì",
+				"Sabato"
+			],
+			"dayNamesShort": [
+				"Dom.",
+				"Lun.",
+				"Mar.",
+				"Mer.",
+				"Gio.",
+				"Ven.",
+				"Sab."
+			],
+			"dayNamesMin": [
+				"Do",
+				"Lu",
+				"Ma",
+				"Me",
+				"Gi",
+				"Ve",
+				"Sa"
+			],
+			"weekHeader": "Sem.",
+			"dateFormat": "dd/mm/yy",
+			"firstDayOfWeek": 1,
+			"yearSuffix": "",
+			"startsWith": "IT:Commence par",
+			"contains": "IT:Contient",
+			"notContains": "IT:Ne contient pas",
+			"endsWith": "IT:Fini par",
+			"equals": "IT:Égal à",
+			"notEquals": "IT:Différent de",
+			"noFilter": "IT:Pas de filtre",
+			"lt": "IT:Inférieur à",
+			"lte": "IT:Inférieur ou égal à",
+			"gt": "IT:Supérieur à",
+			"gte": "IT:Supérieur ou égal à",
+			"is": "IT:Est",
+			"isNot": "IT:N'est pas",
+			"before": "IT:Avant",
+			"after": "IT:Après",
+			"dateIs": "IT:Est le",
+			"dateIsNot": "IT:N'est pas le",
+			"dateBefore": "IT:Est avant le",
+			"dateAfter": "IT:Est après le"
+		}
+	},
+	"JANUARY": "Gennaio",
+	"FEBRUARY": "Febbraio",
+	"MARCH": "Marzo",
+	"APRIL": "Aprile",
+	"MAY": "Maggio",
+	"JUNE": "Giugno",
+	"JULY": "Luglio",
+	"AUGUST": "Agosto",
+	"SEPTEMBER": "Settembre",
+	"OCTOBER": "Ottobre",
+	"NOVEMBER": "Novembre",
+	"DECEMBER": "Dicembre"
+}

@@ -1,0 +1,112 @@
+<p-dialog [(visible)]="visible"
+		  (onShow)="ouvertureModal()"
+		  (onHide)="fermerModal()"
+		  [style]="{width: '750px'}"
+		  header="Création ou mise à jour d'une exclusion sur les mises"
+		  [modal]="true"
+		  styleClass="p-fluid">
+	<form [formGroup]="limiteTicketForm"
+		  (ngSubmit)="enregistrerExclusion()">
+		<div class="grid">
+			<div class="col-12 m-0"
+				 *ngIf="messageActif">
+				<p-messages [(value)]="messageErreur"
+							[enableService]="false">
+				</p-messages>
+			</div>
+			<div class="col-12">
+                <span>
+                    <h4>Limite de debut d'exclusion</h4>
+                    <input type="text"
+						   pInputText
+						   formControlName="limiteDebut"
+						   (keydown)="controlerwLesSaisirDesLimites($event,'limiteDebut')"
+						   [ngClass]="{'ng-invalid ng-dirty':submitted &&
+						   limiteTicketForm.controls['limiteDebut'].errors}">
+                </span>
+				<small id="limiteDebut-help"
+					   class="p-error"
+					   *ngIf="submitted &&
+					   limiteTicketForm.controls['limiteDebut'].errors">Limite de début obligatoire
+				</small>
+			</div>
+			<div class="col-12">
+                <span>
+                    <h4>Limite de fin d'exclusion</h4>
+                    <input type="text"
+						   pInputText
+						   formControlName="limiteFin"
+						   (keydown)="controlerwLesSaisirDesLimites($event,'limiteFin')"
+						   [ngClass]="{'ng-invalid ng-dirty':submitted &&
+						   limiteTicketForm.controls['limiteFin'].errors}">
+                </span>
+				<small id="limiteFin-help"
+					   class="p-error"
+					   *ngIf="submitted &&
+					   limiteTicketForm.controls['limiteFin'].errors">Limite de fin obligatoire
+				</small>
+			</div>
+			<div class="col-12 md:col-6">
+                <span>
+                    <h4>Date de debut d'exclusion</h4>
+                    <p-calendar [maxDate]="dateFuture"
+								appendTo="body"
+								[baseZIndex]="3000"
+								dateFormat="dd-mm-yy"
+								view="date"
+								[showIcon]="true"
+								formControlName="dateDebutLimite"
+								[ngClass]="{'ng-invalid ng-dirty':submitted &&
+								limiteTicketForm.controls['dateDebutLimite'].errors}">
+                    </p-calendar>
+                </span>
+				<small id="dateDebutLimite-help"
+					   class="p-error"
+					   *ngIf="submitted &&
+					   limiteTicketForm.controls['dateDebutLimite'].errors">Date de debut obligatoire
+				</small>
+			</div>
+			<div class="col-12 md:col-6">
+                <span>
+                    <h4>Date de fin d'exclusion</h4>
+                    <p-calendar appendTo="body"
+								[baseZIndex]="3000"
+								dateFormat="dd-mm-yy"
+								view="date"
+								[showIcon]="true"
+								formControlName="dateFinLimite"
+								[ngClass]="{'ng-invalid ng-dirty':submitted &&
+								limiteTicketForm.controls['dateFinLimite'].errors}">
+                    </p-calendar>
+                </span>
+				<small id="dateFinLimite-help"
+					   class="p-error"
+					   *ngIf="submitted &&
+					   limiteTicketForm.controls['dateFinLimite'].errors">Date de fin obligatoire
+				</small>
+			</div>
+			<div class="col-12 md:col-12">
+				<div class="flex justify-content-end mt-3">
+					<p-button label="Enregistrer"
+							  type="submit">
+						<i *ngIf="!loading"
+						   style="margin-right:5px;"
+						   class="pi pi-check"></i>
+						<p-progressSpinner [style]="{width: '20px',
+						                   height: '20px',
+						                   marginRight:'5px'}"
+										   styleClass="custom-spinner"
+										   strokeWidth="7"
+										   *ngIf="loading">
+						</p-progressSpinner>
+					</p-button>
+					<p-button label="Annuler"
+							  icon="pi pi-times"
+							  styleClass="p-button-sm p-button-danger ml-2"
+							  (click)="fermerModal()">
+					</p-button>
+				</div>
+			</div>
+		</div>
+	</form>
+</p-dialog>

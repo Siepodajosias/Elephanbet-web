@@ -1,0 +1,165 @@
+<div class="px-4 py-80 md:px-6 lg:px-5">
+	<div class="surface-card shadow-1 p-3 border-round">
+		<p-toolbar styleClass="mb-4">
+			<ng-template pTemplate="left">
+				<h2>Tableau des premios</h2>
+			</ng-template>
+			<ng-template pTemplate="right">
+				<button [disabled]="bilanPremios && bilanPremios.length==0"
+						(click)="exportExcel()"
+						type="button"
+						pButton pRipple
+						icon="pi pi-file-excel"
+						class="p-button-success mr-2"
+						pTooltip="Export XLSX"
+						tooltipPosition="bottom">
+				</button>
+				<button [disabled]="bilanPremios && bilanPremios.length==0"
+						(click)="exportCSV()"
+						type="button" pButton pRipple
+						icon="pi pi-file"
+						class="p-button-warning"
+						pTooltip="Export CSV"
+						tooltipPosition="bottom">
+				</button>
+			</ng-template>
+		</p-toolbar>
+		<p-table [value]="bilanPremios"
+				 [paginator]="true"
+				 [rows]="20"
+				 [showCurrentPageReport]="true"
+				 [rowsPerPageOptions]="[20,30,40,50]"
+				 [resizableColumns]="true"
+				 [loading]="loading"
+				 sortField="agence"
+				 selectionMode="multiple"
+				 styleClass="p-datatable-gridlines"
+				 exportFilename="rapport-bilan-mise"
+				 responsiveLayout="scroll"
+				 currentPageReportTemplate="De {first} à {last} sur {totalRecords} lignes">
+			<ng-template pTemplate="header">
+				<tr>
+					<th pSortableColumn="agence"
+						[style]="{fontSize:'14px',color:'#e77844',
+						background: 'rgb(231 120 68 / 10%)'}">
+						<div class="text-center">Agencia</div>
+						<div class="text-center">
+							<p-sortIcon field="staffCreatorGroupName"></p-sortIcon>
+						</div>
+					</th>
+					<th pSortableColumn="valeurTotal"
+						[style]="{fontSize:'14px',color:'#2E5C2F',
+						background:'rgb(46 92 47 / 10%)'}">
+						<div class="text-center">Valor Total</div>
+						<div class="text-center">
+							<p-sortIcon field="nombreTicketSuperieur"></p-sortIcon>
+						</div>
+					</th>
+					<th pSortableColumn="numero"
+						[style]="{fontSize:'14px',color:'#f1749e',
+						background:'rgb(241 116 158 / 10%)'}">
+						<div class="text-center">Numero</div>
+						<div class="text-center">
+							<p-sortIcon field="totalMiseSuperieur"></p-sortIcon>
+						</div>
+					</th>
+				</tr>
+				<tr>
+					<th class="lageur-colonne">
+						<p-columnFilter [showClearButton]="false"
+										type="text"
+										field="agence"
+										matchMode="contains"
+										pTooltip="Options de filtrage">
+							<ng-template pTemplate="filter"
+										 let-filter="filterCallback"
+										 let-value="$implicit">
+								<input type="text"
+									   class="p-2 border"
+									   maxlength="20"
+									   pInputText
+									   #valeur
+									   [value]="value"
+									   (input)="filter(valeur.value)">
+							</ng-template>
+						</p-columnFilter>
+					</th>
+					<th class="lageur-colonne">
+						<p-columnFilter [showClearButton]="false"
+										type="text"
+										field="valeurTotal"
+										matchMode="contains"
+										pTooltip="Options de filtrage">
+							<ng-template pTemplate="filter"
+										 let-filter="filterCallback"
+										 let-value="$implicit">
+								<input #valeur
+									   (keydown)="controleDeSaisir($event)"
+									   (input)="filter(valeur.value)"
+									   [value]="value"
+									   maxlength="20"
+									   pInputText
+									   class="p-2 border"
+									   type="text">
+							</ng-template>
+						</p-columnFilter>
+					</th>
+					<th class="lageur-colonne">
+						<p-columnFilter [showClearButton]="false"
+										type="text"
+										field="numero"
+										matchMode="contains"
+										pTooltip="Options de filtrage">
+							<ng-template pTemplate="filter"
+										 let-filter="filterCallback"
+										 let-value="$implicit">
+								<input #valeur
+									   (input)="filter(valeur.value)"
+									   (keydown)="controleDeSaisir($event)"
+									   [value]="value"
+									   maxlength="20"
+									   pInputText
+									   type="text"
+									   class="p-2 border">
+							</ng-template>
+						</p-columnFilter>
+					</th>
+				</tr>
+				<tr [style]="{fontSize:'14px'}" *ngIf="bilanPremios.length > 0 && total">
+					<th>Total</th>
+					<th class="text-right lageur-colonne"
+						[style]="{ color:'#2E5C2F' }">
+						{{ total.totalValor | nombre | replace: ',':' ' }}
+					</th>
+					<th class="text-right lageur-colonne"
+						[style]="{ color:'#f1749e' }">
+						{{ total.totalValor | nombre | replace: ',':' ' }}
+					</th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-bilanPremio>
+				<tr [style]="{ fontSize:'14px' }">
+					<td class="text-left "
+						[ngStyle]="{ 'max-width':'500px' }"
+						[style]="{ color:'#e77844' }">
+						{{ bilanPremio.agence }}
+					</td>
+					<td class="text-right lageur-colonne"
+						[style]="{ color:'#2E5C2F' }">
+						{{ bilanPremio.valeurTotal  | nombre | replace: ',':' ' }}
+					</td>
+					<td class="text-right lageur-colonne"
+						[style]="{ color:'#f1749e' }">
+						{{ bilanPremio.numero  | nombre | replace: ',':' '}}
+					</td>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="emptymessage">
+				<tr>
+					<td class="text-center" colspan="5">Pas de bilan sur cette période</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</div>
+</div>
+

@@ -1,0 +1,84 @@
+<p-dialog [(visible)]="visible"
+		  [style]="{width: '750px'}"
+		  header="Création ou mise à jour d'une exclusion sur les groupes et dates"
+		  [modal]="true"
+		  (onShow)="ouvertureModal()"
+		  (onHide)="fermerModal()"
+		  styleClass="p-fluid">
+	<form [formGroup]="groupeDateForm"
+		  (ngSubmit)="enregistrerGroupeDate()">
+		<div class="grid">
+			<div class="col-12" *ngIf="messageActif">
+				<p-messages [(value)]="messageErreur"
+							[enableService]="false">
+				</p-messages>
+			</div>
+			<div class="col-12">
+                <span>
+                    <h4>Groupe d'exclusion</h4>
+                   <p-autoComplete formControlName="groupe"
+								   [showEmptyMessage]="true"
+								   [suggestions]="filteredgroupe"
+								   (onSelect)="seclectionDeGroupe($event)"
+								   (completeMethod)="filterGroupe($event)"
+								   [minLength]="1"
+								   [ngClass]="{'ng-invalid ng-dirty':
+								   (submitted && groupeDateForm.controls['groupe'].errors) ||
+								   groupeErreur }">
+                   </p-autoComplete>
+                </span>
+				<small id="groupe-help" class="p-error"
+					   *ngIf="submitted && groupeDateForm.controls['groupe'].errors">
+					Groupe d'exclusion obligatoire
+				</small>
+				<small class="p-error" *ngIf="groupeErreur">Renseigner un groupe valide</small>
+
+			</div>
+			<div class="col-12 md:col-6">
+                <span>
+                    <h4>Date de debut d'exclusion</h4>
+                    <p-calendar [maxDate]="dateFuture" appendTo="body"
+								[baseZIndex]="3000" dateFormat="dd-mm-yy" view="date"
+								[showIcon]="true" formControlName="dateDebutLimite"
+								[ngClass]="{'ng-invalid ng-dirty':submitted &&
+								groupeDateForm.controls['dateDebutLimite'].errors}">
+                    </p-calendar>
+                </span>
+				<small id="dateDebutLimite-help" class="p-error"
+					   *ngIf="submitted && groupeDateForm.controls['dateDebutLimite'].errors">
+					Date de debut d'exclusion obligatoire
+				</small>
+			</div>
+			<div class="col-12 md:col-6">
+                <span>
+                    <h4>Date de fin d'exclusion</h4>
+                    <p-calendar appendTo="body"
+								[baseZIndex]="3000" dateFormat="dd-mm-yy" view="date"
+								[showIcon]="true" formControlName="dateFinLimite"
+								[ngClass]="{'ng-invalid ng-dirty':submitted &&
+								groupeDateForm.controls['dateFinLimite'].errors}">
+                    </p-calendar>
+                </span>
+				<small id="dateFinLimite-help" class="p-error"
+					   *ngIf="submitted && groupeDateForm.controls['dateFinLimite'].errors">
+					Date de fin d'exclusion obligatoire
+				</small>
+			</div>
+			<div class="col-12 md:col-12">
+				<div class="flex justify-content-end mt-5">
+					<p-button label="Enregistrer" type="submit">
+						<i *ngIf="!loading" style="margin-right:5px ;" class="pi pi-check"></i>
+						<p-progressSpinner [style]="{width: '20px', height: '20px',marginRight:'5px'}"
+										   styleClass="custom-spinner"
+										   strokeWidth="7" *ngIf="loading">
+						</p-progressSpinner>
+					</p-button>
+					<p-button label="Annuler" icon="pi pi-times"
+							  styleClass="p-button-sm p-button-danger ml-2 "
+							  (click)="fermerModal()">
+					</p-button>
+				</div>
+			</div>
+		</div>
+	</form>
+</p-dialog>

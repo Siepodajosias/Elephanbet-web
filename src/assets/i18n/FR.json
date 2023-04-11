@@ -1,0 +1,116 @@
+{
+	"GLOBAL": {
+	},
+	"LOGIN": {
+		"LABEL_BIENVENUE": "Bienvenue",
+		"LOGIN_UTILISATEUR": "Nom d'utilisateur",
+		"PLACEHOLDER_LOGIN_UTILISATEUR": "Entrez votre nom d'utilisateur",
+		"MOT_DE_PASSE": "Mot de passe",
+		"PLACEHOLDER_MOT_DE_PASSE": "Entrez votre mot de passe",
+		"BTN_CONNECTER": "Se connecter"
+	},
+	"COMPONENTS": {
+		"POPOVER": {
+			"FILTRE_LABEL": "Rechercher",
+			"BOUTON_VALIDATION": "OK",
+			"BOUTON_ANNULATION": "Annuler",
+			"CHECKBOX_SELECTIONNER_TOUT": "Sélectionner tout"
+		},
+		"PRIMENG": {
+			"clear": "Effacer",
+			"prevText": "Précédent",
+			"nextText": "Suivant",
+			"today": "Aujourd'hui",
+			"monthNames": [
+				"Janvier",
+				"Février",
+				"Mars",
+				"Avril",
+				"Mai",
+				"Juin",
+				"Juillet",
+				"Août",
+				"Septembre",
+				"Octobre",
+				"Novembre",
+				"Décembre"
+			],
+			"monthNamesShort": [
+				"janv.",
+				"févr.",
+				"mars",
+				"avr.",
+				"mai",
+				"juin",
+				"juil.",
+				"août",
+				"sept.",
+				"oct.",
+				"nov.",
+				"déc."
+			],
+			"dayNames": [
+				"dimanche",
+				"lundi",
+				"mardi",
+				"mercredi",
+				"jeudi",
+				"vendredi",
+				"samedi"
+			],
+			"dayNamesShort": [
+				"dim.",
+				"lun.",
+				"mar.",
+				"mer.",
+				"jeu.",
+				"ven.",
+				"sam."
+			],
+			"dayNamesMin": [
+				"D",
+				"L",
+				"M",
+				"M",
+				"J",
+				"V",
+				"S"
+			],
+			"weekHeader": "Sem.",
+			"dateFormat": "dd/mm/yy",
+			"firstDayOfWeek": 1,
+			"yearSuffix": "",
+			"startsWith": "Commence par",
+			"contains": "Contient",
+			"notContains": "Ne contient pas",
+			"endsWith": "Fini par",
+			"equals": "Égal à",
+			"notEquals": "Différent de",
+			"noFilter": "Pas de filtre",
+			"lt": "Inférieur à",
+			"lte": "Inférieur ou égal à",
+			"gt": "Supérieur à",
+			"gte": "Supérieur ou égal à",
+			"is": "Est",
+			"isNot": "N'est pas",
+			"before": "Avant",
+			"after": "Après",
+			"dateIs": "Est le",
+			"dateIsNot": "N'est pas le",
+			"dateBefore": "Est avant le",
+			"dateAfter": "Est après le"
+		}
+	},
+	"JANUARY": "Janvier",
+	"FEBRUARY": "Février",
+	"MARCH": "Mars",
+	"APRIL": "Avril",
+	"MAY": "Mai",
+	"JUNE": "Juin",
+	"JULY": "Juillet",
+	"AUGUST": "Août",
+	"SEPTEMBER": "Septembre",
+	"OCTOBER": "Octobre",
+	"NOVEMBER": "Novembre",
+	"DECEMBER": "Décembre"
+}

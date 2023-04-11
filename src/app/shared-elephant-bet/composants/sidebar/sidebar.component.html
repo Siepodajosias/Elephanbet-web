@@ -1,0 +1,97 @@
+<p-toolbar [style]="{background: ' #253138',
+           position:'fixed',
+           top:'0',
+           left:'0',
+           right:0,
+           zIndex:'2',
+           border:'none'}">
+	<div class="p-toolbar-group-left">
+		<i class="pi pi-bars mr-3 bg-pink-300 hover:bg-pink-400 "
+		   style="font-size: 1.5rem"
+		   (click)="toggleCollapse()"></i>
+		<div class="logo-text">
+			<img alt="Card" src="assets/logo/logoElephantBet.png"
+				 [style]="{'width': '250px','height': '52px'}">
+		</div>
+	</div>
+	<div class="p-toolbar-group-right ">
+		<em class="fa-solid fa-user mr-2 text-50"></em>
+		<span class="mr-3 text-50">{{ nom }} {{ prenoms }}</span>
+		<button pButton pRipple type="button"
+				icon="pi pi-fw pi-power-off"
+				pTooltip="Se déconnecter"
+				tooltipPosition="left"
+				class="p-button-rounded
+				p-button-raised bg-pink-300
+				p-button-text text-50 hover:bg-red-500
+				p-button-sm" (click)="quiter()">
+		</button>
+	</div>
+</p-toolbar>
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
+	<ul class="sidenav-nav">
+		<li class="sidenav-nav-item" *ngFor="let data of navData">
+			<a class="sidenav-nav-link" (click)="handleClick(data)"
+			   [ngClass]="{'': isMenuActive(data)}"
+			   *ngIf="data.items && data.items.length >0">
+				<em class="sidenav-link-icon"
+					[pTooltip]="!collapsed ? data.label : ''"
+					[class]="data.icon"
+					(click)="toggleAdminItems()">
+				</em>
+				<span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+							{{ data.label}}
+				</span>
+				<em *ngIf="data.items && collapsed"
+					class="menu-collapse-icon"
+					[ngClass]="!data.expanded ? 'fa fa-angle-right':'fa fa-angle-down'">
+				</em>
+			</a>
+			<a class="sidenav-nav-link"
+			   *ngIf="!data.items || (data.items && data.items.length === 0)"
+			   [routerLink]="[data.routerlink]"
+			   routerLinkActive="active"
+			   [routerLinkActiveOptions]="{exact:true}">
+				<em class="sidenav-link-icon"
+					[pTooltip]="!collapsed ? data.label : ''"
+					[class]="data.icon">
+				</em>
+				<span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+						   {{ data.label}}
+			   </span>
+			</a>
+			<div *ngIf="collapsed && data.items && data.items.length > 0">
+				<app-sublevel-menu [collapsed]="collapsed"
+								   [multiple]="multiple"
+								   [expanded]="data.expanded"
+								   [data]="data">
+				</app-sublevel-menu>
+			</div>
+		</li>
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,149 @@
+<div class="px-3 py-4 md:px-5 lg:px-7 mt-2">
+	<p-tag [style]="{'fontSize':'20px','padding':'10px'}"
+		   severity="info"
+		   value="Paramétrage du tableau des mises">
+	</p-tag>
+	<div class="grid mt-2">
+		<div class="col-12 md:col-12 lg:col-12">
+			<div class="surface-card shadow-1 p-3 border-round">
+				<p-table [value]="limiteTickets"
+						 [paginator]="true"
+						 [rows]="10"
+						 [loading]="loading"
+						 [showCurrentPageReport]="true"
+						 selectionMode="multiple"
+						 currentPageReportTemplate="De {first} à {last} sur {totalRecords} lignes"
+						 responsiveLayout="scroll"
+						 [rowsPerPageOptions]="[10,20,30,40]"
+						 [resizableColumns]="true"
+						 styleClass="p-datatable-gridlines">
+					<ng-template pTemplate="caption">
+						<div class="flex align-items-center justify-content-between">
+							<div class="left">
+								<h3 style="font-weight: bold;">Gestion des exclusions sur les mises</h3>
+							</div>
+							<span class="right">
+                                <button pButton pRipple
+										label="Créer une nouvelle exclusion"
+										icon="pi pi-plus"
+										class="p-button-info"
+										(click)="ouvrirModaleEdition()">
+								</button>
+                            </span>
+						</div>
+					</ng-template>
+					<ng-template pTemplate="header">
+						<tr>
+							<th pSortableColumn="limiteDebut"
+								rowspan="2" class="text-center">Intervalle
+								<p-sortIcon field="limiteDebut"></p-sortIcon>
+							</th>
+							<th colspan="2" class="text-center">Période</th>
+							<th rowspan="3" class="text-center">Actions</th>
+						</tr>
+						<tr>
+							<th pSortableColumn="dateDebutLimite"
+								class="text-center">Date de début
+								<p-sortIcon field="dateDebutLimite"></p-sortIcon>
+							</th>
+							<th pSortableColumn="dateFinLimite"
+								class="text-center">Date de fin
+								<p-sortIcon field="dateFinLimite"></p-sortIcon>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<p-columnFilter [showClearButton]="false"
+												type="text"
+												field="limiteDebut"
+												matchMode="contains"
+												pTooltip="Options de filtrage">
+									<ng-template pTemplate="filter"
+												 let-filter="filterCallback"
+												 let-value="$implicit">
+										<input type="text" #valeur
+											   class="p-2 border"
+											   maxlength="20"
+											   [value]="value"
+											   pInputText
+											   (input)="filter(valeur.value)">
+									</ng-template>
+								</p-columnFilter>
+							</th>
+							<th>
+								<p-columnFilter [showClearButton]="false"
+												type="text"
+												field="dateDebutLimite"
+												matchMode="contains"
+												pTooltip="Options de filtrage">
+									<ng-template pTemplate="filter"
+												 let-filter="filterCallback"
+												 let-value="$implicit">
+										<input type="text" #valeur
+											   class="p-2 border"
+											   maxlength="20"
+											   [value]="value"
+											   pInputText
+											   (input)="filter(valeur.value)">
+									</ng-template>
+								</p-columnFilter>
+							</th>
+							<th>
+								<p-columnFilter [showClearButton]="false"
+												type="text"
+												field="dateFinLimite"
+												matchMode="contains"
+												pTooltip="Options de filtrage">
+									<ng-template pTemplate="filter"
+												 let-filter="filterCallback"
+												 let-value="$implicit">
+										<input type="text" #valeur
+											   class="p-2 border"
+											   maxlength="20"
+											   [value]="value"
+											   pInputText
+											   (input)="filter(valeur.value)">
+									</ng-template>
+								</p-columnFilter>
+							</th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-limiteTicket>
+						<tr>
+							<td class="text-right">
+								de {{limiteTicket.limiteDebut | nombre | replace: ',':' '}} à
+								{{limiteTicket.limiteFin | nombre | replace: ',':' '}}</td>
+							<td class="text-right">{{limiteTicket.dateDebutLimite |date:'dd-MM-yyyy'}}</td>
+							<td class="text-right">{{limiteTicket.dateFinLimite |date:'dd-MM-yyyy'}}</td>
+							<td style="flex: 0 0 4rem">
+								<button pButton pRipple
+										type="button"
+										icon="pi pi-pencil"
+										pTooltip="Modifier"
+										class="p-button-rounded p-button-text"
+										(click)="ouvrirModaleEdition(limiteTicket)">
+								</button>
+								<button pButton pRipple
+										type="button"
+										icon="pi pi-trash"
+										pTooltip="Supprimer"
+										class="p-button-rounded p-button-text"
+										(click)="supprimerExclusionTicketMessage(limiteTicket)">
+								</button>
+							</td>
+						</tr>
+					</ng-template>
+				</p-table>
+			</div>
+		</div>
+	</div>
+</div>
+<app-limite-ticket-modal
+		*ngIf="editionParametrageVisible"
+		[(visible)]="editionParametrageVisible"
+		[limiteTicket]="limiteTicket"
+		(parametreModifie)="onParametrageModifie($event)">
+</app-limite-ticket-modal>
+<p-toast [style]="{top:'10%',right:0}"></p-toast>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+

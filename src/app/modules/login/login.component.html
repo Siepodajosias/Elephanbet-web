@@ -1,0 +1,49 @@
+<div class="flex flex-wrap justify-content-center myclass">
+	<form [formGroup]="formBuilder" (ngSubmit)="connexion()">
+		<p-card class="shadow-5 p-fluid"
+				[style]="{'width': '25rem','height': '30rem'}">
+			<div class="flex justify-content-center flex-wrap card-container mt-5">
+				<div class="flex align-items-center justify-content-center w-4rem h-4rem font-bold border-round">
+					<img alt="Card" src="assets/logo/logo.jfif"
+						 [style]="{'width': '10rem','height': '8rem'}">
+				</div>
+			</div>
+			<div class="flex justify-content-center flex-wrap card-container">
+				<div class="flex align-items-center justify-content-center w-4rem h-4rem font-bold border-round m-2">
+					<h2 [style]="{'color': '#2196F3'}">
+						{{'LOGIN.LABEL_BIENVENUE' | translate}}
+					</h2>
+				</div>
+			</div>
+			<span *ngIf="messageActif">
+		      <p-message severity="error" [text]="messageErreur"></p-message>
+           </span>
+			<h5 style="margin-bottom:0px ;">
+				{{'LOGIN.LOGIN_UTILISATEUR' | translate}}
+			</h5>
+			<input type="text" placeholder="{{'LOGIN.PLACEHOLDER_LOGIN_UTILISATEUR' | translate}}"
+				   pInputText class="p-inputtext-sm"
+				   formControlName="username"/>
+			<h5 style="margin-bottom:0px;
+			       margin-top:15px ;">{{'LOGIN.MOT_DE_PASSE' | translate}}
+			</h5>
+			<span>
+				<p-password styleClass="mb-5"
+							formControlName="password"
+							[toggleMask]="true"
+							[feedback]="false"
+							placeholder="{{'LOGIN.PLACEHOLDER_MOT_DE_PASSE' | translate}}">
+				</p-password>
+			</span>
+			<button pButton pRipple label="{{'LOGIN.BTN_CONNECTER' | translate}}"
+					type="submit" class=" p-button-sm mb-4">
+				<p-progressSpinner
+						[style]="{width: '20px', height: '20px'}"
+						styleClass="custom-spinner"
+						strokeWidth="7"
+						*ngIf="spinnerActif">
+				</p-progressSpinner>
+			</button>
+		</p-card>
+	</form>
+</div>

@@ -1,0 +1,151 @@
+<!-- Créer un utilisateur-->
+<p-dialog [(visible)]="visible"
+		  [style]="{width: '700px'}"
+		  header="Création ou mise à jour d'un utilisateur"
+		  [modal]="true"
+		  styleClass="p-fluid"
+		  (onShow)="ouvertureModal()"
+		  (onHide)="fermerModal()">
+	<form [formGroup]="utilisateurForm" #form="ngForm"
+		  (ngSubmit)="enregistrerUtilisateur()">
+		<div class="grid">
+			<div class="col-12">
+				<span class="p-float-label mb-1">
+					<span>Nom</span>
+					<input type="text"
+						   maxlength="150"
+						   pInputText
+						   formControlName="nom"
+						   [ngClass]="(utilisateurForm.controls['nom'].invalid) ?
+						   'ng-invalid ng-dirty': ''"
+						   [ngClass]="(utilisateurForm.controls['nom'].invalid &&
+						   form.submitted) ? 'ng-invalid ng-dirty': ''">
+				</span>
+				<div *ngIf="(utilisateurForm.controls['nom'].invalid &&
+				        (utilisateurForm.controls['nom'].dirty ||
+				        utilisateurForm.controls['nom'].touched)) ||
+				        (utilisateurForm.controls['nom'].invalid &&
+				        form.submitted)"
+					 class="text-danger d-flex flex-row-reverse">
+					<div *ngIf="utilisateurForm.controls['nom'].errors['required']">
+						Nom obligatoire
+					</div>
+					<div *ngIf="utilisateurForm.controls['nom'].errors['minlength']">
+						Le nom doit contenir au moins 3 caractères
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<span class="p-float-label mb-1">
+					<span>Prénom</span>
+					<input type="text"
+						   maxlength="150"
+						   pInputText
+						   formControlName="prenoms"
+						   [ngClass]="(utilisateurForm.controls['prenoms'].invalid &&
+							form.submitted) ? 'ng-invalid ng-dirty': ''"
+						   [ngClass]="utilisateurForm.controls['prenoms'].invalid ?
+						   'ng-invalid ng-dirty':''">
+				</span>
+				<div *ngIf="(utilisateurForm.controls['prenoms'].invalid &&
+				        (utilisateurForm.controls['prenoms'].dirty ||
+				         utilisateurForm.controls['prenoms'].touched)) ||
+				        (utilisateurForm.controls['prenoms'].invalid &&
+				        form.submitted) "
+					 class="text-danger d-flex flex-row-reverse">
+					<div *ngIf="utilisateurForm.controls['prenoms'].errors['required']">
+						Prénoms obligatoires
+					</div>
+					<div *ngIf="utilisateurForm.controls['prenoms'].errors['minlength']">
+						Les prénoms doivent contenir au moins 3 caractères
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<span class="p-float-label mb-1">
+					<span>Nom d'utilisateur</span>
+					<input type="text"
+						   maxlength="150"
+						   pInputText
+						   formControlName="username"
+						   [ngClass]="(utilisateurForm.controls['username'].invalid &&
+							form.submitted) ? 'ng-invalid ng-dirty': ''"
+						   [ngClass]="utilisateurForm.controls['username'].invalid ?
+						   'ng-invalid ng-dirty':''">
+				</span>
+				<div *ngIf="(utilisateurForm.controls['username'].invalid &&
+				    (utilisateurForm.controls['username'].dirty ||
+				    utilisateurForm.controls['username'].touched)) ||
+				    (utilisateurForm.controls['username'].invalid &&
+				    form.submitted)"
+					 class="text-danger d-flex flex-row-reverse">
+					<div *ngIf="utilisateurForm.controls['username'].errors['required']">
+						Nom d'utilisateur obligatoire
+					</div>
+					<div *ngIf="utilisateurForm.controls['username'].errors['minlength']">
+						Le nom d'utilisateur doit contenir au moins 3 caractères
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<span class="p-float-label mb-1">
+					<span>Mot de passe</span>
+					<input type="password"
+						   maxlength="8"
+						   pInputText
+						   formControlName="password"
+						   (input)="changementDeMotPasse()"
+						   [ngClass]="passwordRequired ?
+						   'ng-invalid ng-dirty':''">
+				</span>
+				<div *ngIf="passwordRequired"
+					 class="text-danger d-flex flex-row-reverse">
+					Mot de passe obligatoire
+				</div>
+			</div>
+			<div class="col-12">
+				<span class="p-float-label">
+					<span>Rôle</span>
+					<p-dropdown
+							[autoDisplayFirst]="false"
+							[options]="roles"
+							dataKey="code"
+							formControlName="role"
+							optionLabel="designation"
+							[ngClass]="(utilisateurForm.controls['role'].invalid &&
+							form.submitted) ? 'ng-invalid ng-dirty': ''"
+							[ngClass]="utilisateurForm.controls['role'].invalid ?
+							'ng-invalid ng-dirty':''">
+					</p-dropdown>
+				</span>
+				<div *ngIf="(utilisateurForm.controls['role'].invalid &&
+				    (utilisateurForm.controls['role'].dirty ||
+				    utilisateurForm.controls['role'].touched)) ||
+				    (utilisateurForm.controls['role'].invalid &&
+				    form.submitted)"
+					 class="text-danger d-flex flex-row-reverse">
+					<div *ngIf="utilisateurForm.controls['role'].errors['required']">
+						Le rôle est obligatoire
+					</div>
+				</div>
+			</div>
+			<div class="col-12 md:col-12">
+				<div class="flex justify-content-end">
+					<p-button label="Enregistrer" type="submit">
+						<i *ngIf="!loading" style="margin-right:5px ;"
+						   class="pi pi-check"></i>
+						<p-progressSpinner [style]="{width: '20px', height: '20px',marginRight:'5px'}"
+										   styleClass="custom-spinner"
+										   strokeWidth="7" *ngIf="loading">
+						</p-progressSpinner>
+					</p-button>
+					<p-button label="Annuler"
+							  icon="pi pi-times"
+							  styleClass="p-button-sm p-button-danger ml-2"
+							  (click)="fermerModal()">
+					</p-button>
+				</div>
+			</div>
+		</div>
+	</form>
+</p-dialog>
