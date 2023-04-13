@@ -38,7 +38,7 @@ const routes: Routes = [
 						.then((m) => m.AdminModule),
 				canActivate: [AuthGuard]
 			},
-			{ path: '', redirectTo: 'table-general', pathMatch: 'full' },
+			{ path: '', redirectTo: 'retail/tableau-general', pathMatch: 'full' },
 			{
 				path: '**',
 				loadChildren: () => import('./modules/tableau-general/tableau-general.module')

@@ -1,30 +1,33 @@
 <div class=" px-4 py-5 md:px-6 lg:px-8 mt-2">
-	<p-tag [style]="{'fontSize':'20px','padding':'10px'}"
-		   severity="info"
-		   value="Paramétrage des accès">
+	<p-tag severity="info"
+		   value="Paramétrage des accès"
+		   [style]="{'fontSize':'20px','padding':'10px'}">
 	</p-tag>
 	<div class="grid mt-2">
 		<div class="col-12 md:col-12 lg:col-12">
 			<div class="surface-card shadow-1 p-3 border-round">
-				<p-table [value]="utilisateurs" [paginator]="true"
-						 [rows]="10" [showCurrentPageReport]="true"
-						 currentPageReportTemplate="De {first} à {last} sur {totalRecords} lignes"
-						 responsiveLayout="scroll"
-						 [rowsPerPageOptions]="[10,20,30,40]"
-						 [resizableColumns]="true"
+				<p-table [rows]="10"
+						 [paginator]="true"
 						 [loading]="loading"
+						 [value]="utilisateurs"
+						 [resizableColumns]="true"
+						 [showCurrentPageReport]="true"
+						 [rowsPerPageOptions]="[10,20,30,40]"
 						 selectionMode="multiple"
-						 styleClass="p-datatable-gridlines">
+						 responsiveLayout="scroll"
+						 styleClass="p-datatable-gridlines"
+						 currentPageReportTemplate="De {first} à {last} sur {totalRecords} lignes">
 					<ng-template pTemplate="caption">
 						<div class="flex align-items-center justify-content-between">
 							<div class="left">
 								<h3 style="font-weight: bold;">Gestion des utilisateurs et droits</h3>
 							</div>
 							<span class="right">
-								 <button pButton
-										 pRipple label="Créer un nouvel utilisateur"
-										 icon="pi pi-plus" class="p-button-info"
-										 (click)="ouvrirModaleEdition()">
+								 <button (click)="ouvrirModaleEdition()"
+										 pButton
+										 icon="pi pi-plus"
+										 class="p-button-info"
+										 pRipple label="Créer un nouvel utilisateur">
 								 </button>
 							</span>
 						</div>
@@ -74,68 +77,74 @@
 						<tr>
 							<th>
 								<p-columnFilter [showClearButton]="false"
-												type="text" field="nom"
+												type="text"
+												field="nom"
 												matchMode="contains"
 												pTooltip="Options de filtrage">
 									<ng-template pTemplate="filter"
-												 let-filter="filterCallback"
-												 let-value="$implicit">
+												let-filter="filterCallback"
+												let-value="$implicit">
 										<input type="text" #valeur
 											   class="p-2 border"
 											   maxlength="20"
-											   [value]="value"
 											   pInputText
+											   [value]="value"
 											   (input)="filter(valeur.value)">
 									</ng-template>
 								</p-columnFilter>
 							</th>
 							<th>
 								<p-columnFilter [showClearButton]="false"
-												type="text" field="prenoms"
+												type="text"
+												field="prenoms"
 												matchMode="contains"
 												pTooltip="Options de filtrage">
 									<ng-template pTemplate="filter"
-												 let-filter="filterCallback"
-												 let-value="$implicit">
+												let-filter="filterCallback"
+												let-value="$implicit">
 										<input type="text" #valeur
-											   class="p-2 border" maxlength="20"
-											   [value]="value"
+											   class="p-2 border"
+											   maxlength="20"
 											   pInputText
+											   [value]="value"
 											   (input)="filter(valeur.value)">
 									</ng-template>
 								</p-columnFilter>
 							</th>
 							<th>
 								<p-columnFilter [showClearButton]="false"
-												type="text" field="username"
+												type="text"
+												field="username"
 												matchMode="contains"
 												pTooltip="Options de filtrage">
 									<ng-template pTemplate="filter"
-												 let-filter="filterCallback"
-												 let-value="$implicit">
+												let-filter="filterCallback"
+												let-value="$implicit">
 										<input type="text" #valeur
-											   class="p-2 border" maxlength="20"
-											   [value]="value"
+											   class="p-2 border"
+											   maxlength="20"
 											   pInputText
+											   [value]="value"
 											   (input)="filter(valeur.value)">
 									</ng-template>
 								</p-columnFilter>
 							</th>
 							<th>
 								<p-columnFilter [showClearButton]="false"
-												field="actif" matchMode="contains"
-												[showMenu]="false">
+												    [showMenu]="false"
+												    field="actif"
+												    matchMode="contains">
 									<ng-template pTemplate="filter"
-												 let-value let-filter="filterCallback">
+												    let-value let-filter="filterCallback">
 										<p-dropdown appendTo="body"
-													[baseZIndex]="3000"
+													placeholder="Activé"
 													[ngModel]="value"
 													[options]="statut"
-													(onChange)="filter($event.value)"
-													placeholder="Activé"
-													[showClear]="false">
+													[baseZIndex]="3000"
+													[showClear]="false"
+													(onChange)="filter($event.value)">
 											<ng-template let-option pTemplate="item">
-												<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+												<span [class]="'customer-badge status-' + option.value">{{ option.label }}</span>
 											</ng-template>
 										</p-dropdown>
 									</ng-template>
@@ -143,20 +152,21 @@
 							</th>
 							<th>
 								<p-columnFilter [showClearButton]="false"
-												field="role" matchMode="contains"
-												[showMenu]="false">
+												    field="role"
+												    matchMode="contains"
+												    [showMenu]="false">
 									<ng-template pTemplate="filter" let-value
-												 let-filter="filterCallback">
+												    let-filter="filterCallback">
 										<p-dropdown appendTo="body"
-													[baseZIndex]="3000"
-													[ngModel]="value"
-													[options]="roleOptions"
-													(onChange)="filter($event.value)"
 													placeholder="Administrateur"
-													[showClear]="false">
+													[showClear]="false"
+													[ngModel]="value"
+													[baseZIndex]="3000"
+													[options]="roleOptions"
+													(onChange)="filter($event.value)">
 											<ng-template let-option pTemplate="item">
 												<span [class]="'customer-badge status-' + option.value">
-													{{option.label}}
+													{{ option.label }}
 												</span>
 											</ng-template>
 										</p-dropdown>
@@ -167,15 +177,16 @@
 					</ng-template>
 					<ng-template pTemplate="body" let-utilisateur>
 						<tr>
-							<td>{{utilisateur.nom}}</td>
-							<td>{{utilisateur.prenoms}}</td>
-							<td>{{utilisateur.username}}</td>
+							<td> {{ utilisateur.nom }} </td>
+							<td> {{ utilisateur.prenoms }} </td>
+							<td> {{ utilisateur.username }} </td>
 							<td>
 								<p-tag *ngIf="utilisateur.actif"
 									   severity="success" value="Activé">
 								</p-tag>
 								<p-tag *ngIf="!utilisateur.actif"
-									   severity="danger" value="Desactivé">
+									   severity="danger"
+									   value="Desactivé">
 								</p-tag>
 							</td>
 							<td *ngIf="utilisateur.role=='ADMIN'">
@@ -185,14 +196,16 @@
 								Lecteur simple
 							</td>
 							<td style="flex: 0 0 4rem">
-								<button pButton pRipple
+								<button pButton
+										pRipple
 										type="button"
 										icon="pi pi-pencil"
 										pTooltip="Modifier"
 										class="p-button-rounded p-button-text"
 										(click)="ouvrirModaleEdition(utilisateur)">
 								</button>
-								<button pButton pRipple
+								<button pButton
+										pRipple
 										type="button"
 										icon="pi pi-trash"
 										pTooltip="Supprimer"
@@ -212,5 +225,5 @@
 				   [utilisateur]="utilisateur"
 				   (utilisateurModifie)="onUtilisateurModifie($event)">
 </utilisateur-modal>
-<p-toast [style]="{top:'10%',right:0}"></p-toast>
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p-toast [style]="{ top:'10%',right:0 }"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' } "></p-confirmDialog>

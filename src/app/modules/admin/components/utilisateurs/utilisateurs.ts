@@ -35,7 +35,6 @@ export class Utilisateurs implements OnInit {
 			{ label: 'Administrateur', value: 'ADMIN' },
 			{ label: 'Lecteur simple', value: 'LECTEUR_SIMPLE' }
 		];
-
 	}
 
 	/**

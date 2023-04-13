@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://38.242.200.188:8080/elephantbet',
-  url: 'http://elephantbet-ao-backoffice.bet'
+  apiUrl: 'http://51.38.187.254:9000',
+  url: 'http://51.38.187.254:4200'
 };

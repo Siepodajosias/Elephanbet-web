@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Tokens } from 'src/app/shared-elephant-bet/models/tokens';
 import { Observable } from 'rxjs';
@@ -24,7 +24,8 @@ export class LoginService {
 	 * @public
 	 */
 	public connexion(utilisateur: Utilisateur): Observable<Tokens> {
-		return this.http.post<Tokens>(UrlServeur.connexion, utilisateur);
+		return this.http.post<Tokens>(UrlServeur.connexion, utilisateur,
+				{ headers: new HttpHeaders({ timeout: `${50000}` }) });
 	}
 
 	/**

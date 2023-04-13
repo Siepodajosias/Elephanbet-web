@@ -37,6 +37,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { DEFAULT_TIMEOUT, TimeoutInterceptor } from 'src/app/shared-elephant-bet/interceptors/timeout-interceptor.service';
 
 registerLocaleData(localePt);
 registerLocaleData(localeFr);
@@ -98,6 +99,8 @@ export function tokenGetter(): string {
 		JwtHelperService,
 		{ provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
+		{ provide: DEFAULT_TIMEOUT, useValue: 60000 },
 		{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 	bootstrap: [AppComponent]
 })

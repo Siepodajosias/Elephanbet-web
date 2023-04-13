@@ -31,7 +31,8 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
 	<ul class="sidenav-nav">
 		<li class="sidenav-nav-item" *ngFor="let data of navData">
-			<a class="sidenav-nav-link" (click)="handleClick(data)"
+			<a class="sidenav-nav-link"
+			   (click)="handleClick(data)"
 			   [ngClass]="{'': isMenuActive(data)}"
 			   *ngIf="data.items && data.items.length >0">
 				<em class="sidenav-link-icon"
@@ -42,8 +43,8 @@
 				<span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
 							{{ data.label}}
 				</span>
-				<em *ngIf="data.items && collapsed"
-					class="menu-collapse-icon"
+				<em class="menu-collapse-icon"
+					*ngIf="data.items && collapsed"
 					[ngClass]="!data.expanded ? 'fa fa-angle-right':'fa fa-angle-down'">
 				</em>
 			</a>
@@ -53,8 +54,8 @@
 			   routerLinkActive="active"
 			   [routerLinkActiveOptions]="{exact:true}">
 				<em class="sidenav-link-icon"
-					[pTooltip]="!collapsed ? data.label : ''"
-					[class]="data.icon">
+					[class]="data.icon"
+					[pTooltip]="!collapsed ? data.label : ''">
 				</em>
 				<span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
 						   {{ data.label}}

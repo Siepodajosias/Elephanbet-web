@@ -1,5 +1,6 @@
 <div class="flex flex-wrap justify-content-center myclass">
-	<form [formGroup]="formBuilder" (ngSubmit)="connexion()">
+	<form [formGroup]="formBuilder"
+		  (ngSubmit)="connexion()">
 		<p-card class="shadow-5 p-fluid"
 				[style]="{'width': '25rem','height': '30rem'}">
 			<div class="flex justify-content-center flex-wrap card-container mt-5">
@@ -11,7 +12,7 @@
 			<div class="flex justify-content-center flex-wrap card-container">
 				<div class="flex align-items-center justify-content-center w-4rem h-4rem font-bold border-round m-2">
 					<h2 [style]="{'color': '#2196F3'}">
-						{{'LOGIN.LABEL_BIENVENUE' | translate}}
+						{{ 'LOGIN.LABEL_BIENVENUE' | translate }}
 					</h2>
 				</div>
 			</div>
@@ -28,20 +29,20 @@
 			       margin-top:15px ;">{{'LOGIN.MOT_DE_PASSE' | translate}}
 			</h5>
 			<span>
-				<p-password styleClass="mb-5"
-							formControlName="password"
-							[toggleMask]="true"
+				<p-password [toggleMask]="true"
 							[feedback]="false"
+							styleClass="mb-5"
+							formControlName="password"
 							placeholder="{{'LOGIN.PLACEHOLDER_MOT_DE_PASSE' | translate}}">
 				</p-password>
 			</span>
 			<button pButton pRipple label="{{'LOGIN.BTN_CONNECTER' | translate}}"
 					type="submit" class=" p-button-sm mb-4">
 				<p-progressSpinner
-						[style]="{width: '20px', height: '20px'}"
-						styleClass="custom-spinner"
+						*ngIf="spinnerActif"
+						[style]="{ width: '20px', height: '20px' }"
 						strokeWidth="7"
-						*ngIf="spinnerActif">
+						styleClass="custom-spinner">
 				</p-progressSpinner>
 			</button>
 		</p-card>
